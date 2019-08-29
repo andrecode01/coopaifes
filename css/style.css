@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css?family=Russo+One&display=swap');
+
+
+
+*{
+  margin: 0; 
+  padding: 0; 
+}
+
+html{
+    height: 100%;
+}
+
+body{
+  color: white;
+  font-family: Georgia,sans-serif;
+  margin: 0px;
+  padding: 0px;
+  /*background: #eee;*/
+  background: linear-gradient(to bottom, #00416a, #799f0c, #ffe000, #00416a);
+
+}
+
+/*==================================================================================*/
+
+.container{
+  background-color: rgba(255,255,255,.10);
+  background-image: url('../img/img_form.png');
+  /*background: linear-gradient(to bottom, #00416a, #799f0c, #ffe000);*/
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-bottom: 20px;
+}
+
+/*=================================================================================*/
+
+.cab{
+  background-color: rgba(255,255,255,.30); 
+  /*background: linear-gradient(90deg, #eee, #abbaab, #eee);*/
+  font-family: 'Russo One', sans-serif;
+  border: 1.5px solid #000;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+    .txtwow {
+      color: #444;
+      text-shadow: 1px 1px #eee;
+    }
+
+    .txtwow:hover {
+      opacity: .5;
+      text-shadow: -1px -1px #eee;
+    }
+
+    .cab a {
+        text-decoration: none;
+    }
+
+/*===================================================================================*/
+
+#home {
+  display: flex;
+  margin: 100px 0;
+  font-size: 1em;
+  font-family: "Verdana", sans-serif;
+}
+
+#home .card {
+  border-radius: 5px;
+  /*background: linear-gradient(90deg, #a8ff7890, #78ffd690);*/
+  background: rgba(255,255,255,.3);
+  margin: auto;  
+  text-align: center;
+  padding: 20px;
+  color: #444;
+  min-width: 100px;
+  border-top: 3px solid;
+}
+
+img {
+    margin: 0 auto;
+}
+
+#home .card:hover {
+  transform: scale(1.15);
+  cursor: pointer;
+  box-shadow: 0 5px 20px 0 #eee;
+/*   animation: boxshadow 1000ms linear infinite; */
+}
+
+/* @keyframes boxshadow {
+  
+  0%{box-shadow: 0 5px 10px 0 #eee;}
+  25%{box-shadow: -5px 0 10px 0 #eee;}
+  50%{box-shadow: 0 -5px 10px 0 #eee;}
+  75%{box-shadow: 5px 0 10px 0 #eee;}
+  100%{box-shadow: 0 5px 10px 0 #eee;}
+} */
+
+#home .card .txt {
+  font-size: 1.2em;
+  margin-top: 50px;
+  color: #222;
+}
+
+.lorem {
+  text-align: center;
+  opacity: 0;
+  top: 240px;
+  width: 200px;
+  left: 25px;
+  position: absolute;
+  clip-path: polygon(36% 0, 66% 0, 100% 20%, 100% 100%, 0 100%, 0 20%);
+  padding: 8px;
+}
+
+#home .card:hover .lorem {
+  color: #222;
+  transition-duration: 1200ms;
+  opacity: 1;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
+}
+
+/*============================================================================*/
+
+.login{
+  color: #000;
+  border-top: .4vh solid #000;
+  border-bottom: .4vh solid #000;
+  border-radius: 1vh;
+  /*background: linear-gradient(90deg, #abbaab, #eee, #abbaab);*/
+  background-color: rgba(255,255,255,.30); 
+} 
+  
+.login input{
+  height: 30px;
+}
+
+.login .control-checkbox{
+  border-top: 3px solid gray;
+  border-left: 3px solid gray;
+  border-radius: 10px;
+  width: 60%;
+  background: #fff;
+}
+
+/*=========================================================================*/
+
+.barra-ut .col-4{
+  background-color: rgba(255,255,255,.30); 
+  /*background: linear-gradient(90deg, #abbaab, #eee);*/
+  border-bottom: 1.5px solid #000;
+  color: #000;
+}
+  .barra-ut label {
+    background-color: rgba(255,255,255,.50); 
+    /*background: #eee;*/
+    width: 100%;
+    border: 1px solid #000;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    border-top: none;
+    padding: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+
+.bu-icon{
+  font-size: large;
+  margin-right: 12.5px; 
+}
+.anima{
+    animation: rot 3s linear infinite;
+}
+
+@keyframes rot{
+    0%{
+      filter: hue-rotate(0deg);
+        transform: rotateY(0deg);
+    }
+    50%{
+      filter: hue-rotate(180deg);
+        transform: rotateY(180deg); 
+    }
+    100%{
+      filter: hue-rotate(360deg);
+        transform: rotateY(360deg);
+    }
+}
+
+/*=================================================================================*/
+
+.headerb{
+  font-family: 'Versana', sans-serif;
+  background-color: rgba(255,255,255,.30); 
+  border-top: 1.5px solid #000;
+  border-bottom: 1.5px solid #000;
+}
+
+.headerb a{
+  text-decoration: none;
+}
+
+.busca{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.busca table {
+  font-size: 14px;
+  border-collapse: collapse;
+  width: auto;
+}
+
+.busca td, .busca th {
+  padding: 10px;
+  margin: 0;
+}
+    .busca th {
+        width: 325px;
+    }
+    .busca th:nth-child(1),.busca th:nth-child(4) {
+        width: auto;
+    }
+    .busca td{
+      font-family: monospace;
+      font-size: large;
+    }
+    .busca td:first-child a{
+      text-decoration: none;
+      background: rgba(0,0,200,.75);
+      border-radius: 4.5px;
+      padding: 5px;
+      color: #ddd;
+    }
+    .busca td:first-child a:hover{
+      opacity: .75; 
+    }
+
+.busca tr{
+  transition-duration: 400ms; 
+  background-color: #333;
+  color: #eee;
+}
+
+.busca tr:nth-child(2n){
+  background-color: #ddd;
+  color: #222;
+}
+
+.busca th {
+  position: sticky;
+  top: 0;
+  background-color: #000;
+  color: white;
+}
+
+.busca tr:hover{
+  transform: scale(1.02);
+  color: #78f000;
+}
+
+.busca tr:nth-child(2n):hover {
+  transform: scale(1.025);
+  color: #2850c8;
+}
+
+.busca .result {
+  background: #000;
+  text-decoration: underline;
+}
+
+
+/*==================================================================================*/
+
+.formb input {
+  width: auto;
+  height: 35px;
+}
+
+.formb button{
+  padding: 3px;
+  margin: 0;
+  position: relative;
+  height: 35px;
+}
+
+.formb fieldset{
+  padding-top: 15px; 
+  text-align: center;
+  background: #000;
+  border-radius: 10px 10px 0 0;
+}
+
+/*=======================================================================================*/
+
+.teto p{
+  background: #000;
+  color: #eee;
+  padding: 1px;
+  margin: 0;
+}
+
+.rodape{
+  background: rgba(0,0,0,.85); 
+}
