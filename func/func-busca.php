@@ -7,7 +7,9 @@
 	
 
 
-	class funcoes{
+	class funcoes {
+
+		#	LISTAR
 
         public static function listar($filtro) {
 			
@@ -59,8 +61,13 @@
 				mysqli_free_result($dados);
 			}
 		}
+
+		#	===
 		
-		public static function altsit($id, $sit){
+		#	ALTERAR SITUAÇÃO
+
+		public static function altsit($id, $sit) {
+		    
 		    $configs = include('bd/config.php');
 		
 			$con = mysqli_connect(
@@ -80,5 +87,32 @@
 
 			}
 		}
+
+		#	===
+
+		#	ADICIONAR OBSERVAÇÃO
+
+		public static function adicionarObs($id, $assunto, $desc) {
+			
+			$configs = include('bd/config.php');
+		
+			$con = mysqli_connect(
+				$configs['BD_HOST'], 
+				$configs['BD_USERNAME'],
+				$configs['BD_PASSWORD'],
+				$configs['BD_DATABASE']
+			);
+
+			if ($con) { 
+
+				$sql = "INSERT INTO OBSERVACOES (OBS_DATAHORA, OBS_ASSUNTO, OBS_DESCRICAO, COOP_ID)
+						VALUES(NOW(), '$assunto', '$desc','$id')";
+
+				mysqli_query($con, $sql);
+
+			}
+		}
+
+
 	}
 ?>
