@@ -2,14 +2,14 @@
   
   # Perfil completo do cooperado
   
-    if (!isset($_SESSION['login'])) 
-    header('location:?a=login');
+  if (!isset($_SESSION['login'])) 
+  header('location:?a=login');
     
-    $sit = false;
+  $sit = false;
     
   $u = $_GET['u'];
 
-    include_once('func/func-busca.php');
+  include_once('func/func-busca.php');
   $configs = include('bd/config.php');
     
   $con = mysqli_connect(
@@ -51,8 +51,8 @@
 
       <div class="dadosp first">
         <p class="text-center">
-          <b><span id="tnome"><?php echo $fet['COOP_NOME']?></span></b><br>
-          <span><b>[&nbsp;<?php echo $fet['COOP_MATRICULA']?>&nbsp;]</b></span><br>
+          <b><span id="tnome"><?php echo $fet['COOP_NOME'] ?></span></b><br>
+          <span><b><?php echo $fet['COOP_MATRICULA'] ?></b></span><br>
           <b>
             <?php 
               
@@ -80,17 +80,44 @@
         </p>
       </div>
       
+      <div class="dadosp da"> 
+
+          <?php if (is_null($fet['COOP_ADMISSAO'])): ?>  
+          
+          <span class="da2">
+            <i class="fa fa-warning"></i> Admissão pendente.
+          </span>
+          <br>
+          <span class="da1">
+            Definir data de adimissão:<br>
+            <input type="date" id="dainp" name="dainp" placeholder="Alterar...">
+          </span>
+
+          <?php else: 
+
+            echo $fet['COOP_ADMISSAO'];  
+            
+          ?>
+
+          <?php endif ?>
+
+      </div>
+      
       <div class="dadosp">
         <div class="cont-ficha">
           
-        <div class="sit">
+         <div class="sit">
+          
           <p>
            Situação: <span class="spnsit"><?php echo $fet['COOP_SITUACAO']?></span>
-           <a href="#" onclick="funcloseopen(1);"><i class="fa fa-cog"></i></a>
+           <button href="" onclick="funcloseopen(1);"><i class="fa fa-cog"></i></button>
           </p>
+
           <div id="altsit" class="altsit text-center">
             
-            <i id="close" class="fa fa-close close" onclick="funcloseopen(0);"></i>
+            <button id="close" class="close" onclick="funcloseopen(0);">
+              X
+            </button>
             
             <form action="" method="post">
               <fieldset>
@@ -104,7 +131,7 @@
                   <option value="Ativo">Ativo</option>
                   <option value="Inativo">Inativo</option>
                 </select>
-                
+                <br>
                 <button type="submit" href="#" class="btnalt">Alterar</button>
                 
               </fieldset>
@@ -112,10 +139,9 @@
             
             <?php 
             
-            $id = $fet['COOP_ID'];
+                $id = $fet['COOP_ID'];
             
-            
-                if(count($_POST) > 0){
+                if(count($_POST) > 0 && $_POST['ss'] != ''){
                 
                 $sit = $_POST["ss"];
                 
@@ -129,22 +155,21 @@
           </div>
         </div>
         
-            <form method="POST" action="pdf/pdficha.php" target="_blank">
+          <form method="POST" action="pdf/pdficha.php" target="_blank">
                 
-            <?php   $id = $fet['COOP_ID'];   ?>
+            <?php   $id = $fet['COOP_ID']; ?>
             
         
               <div class="ficha">
                   <button type="submit" name="id" value="<?php echo $id; ?>">
                       
                     <i class="fa fa-download"></i>
-                        Ficha COOP.pdf
+                          Download Ficha.pdf
                     <i style="transform: scale(1.5); color: #D50000; background: #EEEEEE;"class="fa fa-file-pdf"></i>                  
                   </button>
               </div> 
               
-            </form>
-            
+            </form>   
         </div>
       </div>
       
@@ -152,16 +177,16 @@
         <h5>Contato</h5>
         
         <p>
-          <i class="fa fa-phone"></i>
-          Telefone(Residência): <span><?php echo $fet['COOP_TELE_RESI']?></span>
+          <i class="fa fa-phone-alt"></i>
+          Telefone(Residência): <span style="color: #eee;"><?php echo $fet['COOP_TELE_RESI']?></span>
         </p>
         <p>
           <i class="fa fa-mobile"></i>
-          Telefone(Celular): <span><?php echo $fet['COOP_TEL_CELU']?></span>
+          Telefone(Celular): <span style="color: #eee;"><?php echo $fet['COOP_TEL_CELU']?></span>
         </p>
-        <p class="text-center">
-          <a style="text-decoration-color:#fff;color:#000;" href="mailto:nome_exemplo012@email.com">
-          <i class="far fa-envelope"></i> <?php echo $fet['COOP_EMAIL']?>
+        <p class="text-center contmail">
+          <a href="mailto:nome_exemplo012@email.com">
+            <i class="far fa-envelope"></i> <?php echo $fet['COOP_EMAIL']?>
         </a>
         </p>
         
@@ -169,7 +194,7 @@
 
       <div class="dadosp dp">
         <div class="tcaixa">
-          <span><button autofocus="true" id="btn-dp" onClick="exdp();">Exibir <i class="fa fa-chevron-down"></i></button>&nbsp;<i class="far fa-user-circle"></i> Dados Pessoais</span>
+          <span><button class="btnx" id="btn-dp" onClick="exdp();">Exibir <i class="fa fa-chevron-down"></i></button>&nbsp;<i class="far fa-user-circle"></i> Dados Pessoais</span>
         </div>
         <div class="caixa" id="caixa-dp">
           <div>
@@ -215,7 +240,7 @@
 
       <div class="dadosp loc">
         <div class="tcaixa">
-          <span><button id="btn-loc" onclick="exloc();">Exibir <i class="fa fa-chevron-down"></i></button>&nbsp;<i class="fa fa-map-marked-alt"></i> Localização</span>
+          <span><button class="btnx" id="btn-loc" onclick="exloc();">Exibir <i class="fa fa-chevron-down"></i></button>&nbsp;<i class="fa fa-map-marked-alt"></i> Localização</span>
         </div>
         <div class="caixa" id="caixa-loc">
 
@@ -254,7 +279,7 @@
 
       <div class="dadosp dadc last">
         <div class="tcaixa">
-          <span><button id="btn-dadc" onclick="exdadc();">Exibir <i class="fa fa-chevron-down"></i></button>&nbsp;<i class="fa fa-user-plus"></i> Dados Adicionais Obrigatórios</span>
+          <span><button class="btnx" id="btn-dadc" onclick="exdadc();">Exibir <i class="fa fa-chevron-down"></i></button>&nbsp;<i class="fa fa-user-plus"></i> Dados Adicionais Obrigatórios</span>
         </div>
         <div class="caixa" id="caixa-dadc">
           <div>
@@ -390,10 +415,10 @@
           </div>
           <hr>
           <div>
-            <p>Raça/Cor: <span>
-              
-              <?php 
-                switch($fet['COOP_RACA_COR']) {
+            <p>Raça/Cor: 
+              <span>
+                <?php 
+                  switch($fet['COOP_RACA_COR']) {
                   case "b":
                     echo "Branca";
                   break;
@@ -412,10 +437,10 @@
                   case "sd":
                     echo "Sem Declarações";
                   break; 
-                } 
-              ?>
-                
-              </span></p>
+                  } 
+                ?>
+              </span>
+            </p>
           </div>
         </div>
       </div>
@@ -425,7 +450,43 @@
     <div class="col-dir">
       
       <div class="dadosp lado obs-c">
-        <a href=""><h5>Adicionar Observação <i class="fa fa-plus-circle"></i></h5></a>
+        <button class="obs-btn-open" onclick="showObs(1);" href=""><h5>
+          <i class="fa fa-plus-circle"></i>
+          Observação</h5></button>
+        
+        <div id="obs-menu">
+          <button onclick="showObs(0);" class="obs-menu-btn">
+            X
+          </button>
+          <h5>Adicionar Observação</h5>
+
+          <form method="POST" action="">
+          <span>
+            <label for="">Assunto</label><br>
+          <input type="text" name="assunto" placeholder="máx. de 45 caracteres">
+          </span><br>
+          <span>
+            <label for="">Descrição</label><br>
+            <textarea name="desc" id="" cols="30" rows="2" placeholder="máx. de 180 caracteres"></textarea>
+          </span><br>
+          <input type="submit">
+          </form>
+
+          <?php 
+
+            if (count($_POST) > 0 && $_POST['assunto'] != '' && $_POST['desc'] != '') {
+            
+              $id = $fet['COOP_ID'];
+              $assunto = $_POST['assunto'];
+              $desc = $_POST['desc'];
+
+              funcoes::adicionarObs($id, $assunto, $desc);
+              header('Refresh: 0');
+            }
+
+          ?>
+
+        </div>
       </div>
 
       <div class="dadosp obs lado">
@@ -435,10 +496,16 @@
           <?php do { ?>
 
           <div class="obs-item">
-            <p><span>[<?php echo $fet_obs['OBS_DATAHORA'] ?>]</span><br> 
-            Assunto: <strong><?php echo $fet_obs['OBS_ASSUNTO'] ?></strong><br> 
-            Descrição <span style="display: none;"><?php echo $fet_obs['OBS_DESCRICAO'] ?></span>
-            <i class="fa fa-share-square"></i>
+            <p><span>[<?php echo $fet_obs['OBS_DATAHORA'] ?>]</span></p>
+            <p>Assunto: <strong><?php echo $fet_obs['OBS_ASSUNTO'] ?></strong></p>
+            <p style="text-decoration: underline;">
+                Descrição[...]
+                <i class="fa fa-mouse-pointer"></i>
+            </p>
+            <p class="txtdesc">
+                [<?php echo $fet_obs['OBS_DATAHORA'] ?>]<br>
+                <b><?php echo $fet_obs['OBS_ASSUNTO'] ?></b><br>
+                <?php echo $fet_obs['OBS_DESCRICAO'] ?>
             </p>
           </div>
 
@@ -452,8 +519,6 @@
 
       </div>
 
-    </div>
-
   </div>
 
 </div>
@@ -466,40 +531,40 @@ document.title = "Coopa-Ifes Perfil | " + tnome.innerHTML;
 
 function exdp() {
 
-    if (document.getElementById('caixa-dp').style.display == 'none'){
-          document.getElementById('caixa-dp').style.display = 'block';
-          document.getElementById('btn-dp').innerHTML = 'Ocultar <i class="fa fa-bars"></i>';
-    }
-    else{
-          document.getElementById('caixa-dp').style.display = 'none';
-          document.getElementById('btn-dp').innerHTML = 'Exibir <i class="fa fa-chevron-down"></i>';
-    }
+		if (document.getElementById('caixa-dp').style.display == 'none'){
+      		document.getElementById('caixa-dp').style.display = 'block';
+      		document.getElementById('btn-dp').innerHTML = 'Ocultar <i class="fa fa-bars"></i>';
+		}
+		else{
+      		document.getElementById('caixa-dp').style.display = 'none';
+      		document.getElementById('btn-dp').innerHTML = 'Exibir <i class="fa fa-chevron-down"></i>';
+		}
 
-  }
+	}
 
-  function exloc() {
+	function exloc() {
 
-    if (document.getElementById('caixa-loc').style.display == 'none'){
-          document.getElementById('caixa-loc').style.display = 'block';
-          document.getElementById('btn-loc').innerHTML = 'Ocultar <i class="fa fa-bars"></i>';
-    }
-        else{
-          document.getElementById('caixa-loc').style.display = 'none';          
-          document.getElementById('btn-loc').innerHTML = 'Exibir <i class="fa fa-chevron-down"></i>';
-        }
-  }
+		if (document.getElementById('caixa-loc').style.display == 'none'){
+      		document.getElementById('caixa-loc').style.display = 'block';
+      		document.getElementById('btn-loc').innerHTML = 'Ocultar <i class="fa fa-bars"></i>';
+		}
+      	else{
+      		document.getElementById('caixa-loc').style.display = 'none';		      
+      		document.getElementById('btn-loc').innerHTML = 'Exibir <i class="fa fa-chevron-down"></i>';
+      	}
+	}
 
-  function exdadc() {
+	function exdadc() {
 
-    if (document.getElementById('caixa-dadc').style.display == 'none'){
-          document.getElementById('caixa-dadc').style.display = 'block';
-          document.getElementById('btn-dadc').innerHTML = 'Ocultar <i class="fa fa-bars"></i>';
-    }
-        else{
-          document.getElementById('caixa-dadc').style.display = 'none';         
-          document.getElementById('btn-dadc').innerHTML = 'Exibir <i class="fa fa-chevron-down"></i>';
-        }
-  }
+		if (document.getElementById('caixa-dadc').style.display == 'none'){
+      		document.getElementById('caixa-dadc').style.display = 'block';
+      		document.getElementById('btn-dadc').innerHTML = 'Ocultar <i class="fa fa-bars"></i>';
+		}
+      	else{
+      		document.getElementById('caixa-dadc').style.display = 'none';		      
+      		document.getElementById('btn-dadc').innerHTML = 'Exibir <i class="fa fa-chevron-down"></i>';
+      	}
+	}
 
 function funcloseopen(op){
   var altsit = document.getElementById('altsit');
@@ -509,9 +574,14 @@ function funcloseopen(op){
   altsit.style.display = "block";
     
 }
-     
 
-
+function showObs (op) {
+  var obs_menu = document.getElementById('obs-menu');
+  if (op == 0)
+  obs_menu.style.display = "none";
+  else if (op == 1)
+  obs_menu.style.display = "block";
+}
 </script>
 
 <?php   
