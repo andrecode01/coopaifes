@@ -12,11 +12,11 @@
   background-size: cover;
 }
 
-h1 {
+#regForm h1 {
   text-align: center;
 }
 
-input {
+#regForm input {
   padding: 10px;
   width: 100%;
   font-size: 17px;
@@ -26,7 +26,7 @@ input {
 }
 
 /* Mark input boxes that gets an error on validation: */
-input.invalid {
+#regForm input.invalid {
   background-color: #ffdddd;
 }
 
@@ -51,10 +51,10 @@ input.invalid {
     padding: .85em;
   }
 
-form div:nth-child(4) div{
+#regForm form div:nth-child(4) div{
   display: inline;
 }
-  form div:nth-child(4) div ul{
+  #regForm form div:nth-child(4) div ul{
   background: #fff;
   background-color: #fff;
   border-radius: 1em; 
@@ -64,17 +64,17 @@ form div:nth-child(4) div{
   padding: 1em;  
   }
 
-ul li{
+#regForm ul li{
   list-style: none;
 }
 
-input[type=radio]{
+#regForm input[type=radio]{
   width: 1em;
   height: 1em;
   margin: 0 1em 0 1em;
 }
 
-button {
+#regForm button {
   background-color: darkgreen;
   border-radius: .25rem;
   color: #ffffff;
@@ -84,7 +84,7 @@ button {
   cursor: pointer; 
 }
 
-button:hover {
+#regForm button:hover {
   opacity: 0.8;
 }
 
