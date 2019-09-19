@@ -22,12 +22,12 @@
 
 	<hr>
 
-	<form class="formb" action="" method="post" onkeypress="this.submit();">
+	<form class="formb" action="" method="post">
 		<fieldset>
 			<div>
 			<label>Filtrar por Nome</label><br>
-			<input type="text" name="filtro">
-			<button type="submit">Filtrar <i class="fa fa-filter"></i></button>
+			<input type="text" name="filtro" placeholder="digite o nome">
+			<button type="submit"><i class="fa fa-filter"></i></button>
 			<!--<input type="button" value="Filtrar">-->
 			</div>
 		</fieldset>

@@ -22,7 +22,7 @@
 
   if ($con) {
 
-    $sql = "SELECT *, DATE_FORMAT(COOP_DATANASC, '%d/%m/%Y') AS COOP_DATANASC, DATE_FORMAT(COOP_DATAX, '%d/%m/%Y') AS COOP_DATAX FROM COOPERADO WHERE COOP_ID = '$u'";
+    $sql = "SELECT *, DATE_FORMAT(COOP_DATANASC, '%d/%m/%Y') AS COOP_DATANASC, DATE_FORMAT(COOP_DATAX, '%d/%m/%Y') AS COOP_DATAX, DATE_FORMAT(COOP_ADMISSAO, '%d/%m/%Y') AS COOP_ADMISSAO FROM COOPERADO WHERE COOP_ID = '$u'";
 
     $sql_obs = 
     "SELECT *, DATE_FORMAT(OBS_DATAHORA, '%d/%m/%Y às %H:%i') AS OBS_DATAHORA FROM OBSERVACOES AS OBS WHERE OBS.COOP_ID = '$u'";
@@ -79,39 +79,84 @@
           </b>
         </p>
       </div>
-      
-      <div class="dadosp da"> 
 
+      <div class="pnav">
+        <div class="pnav-item"> <!-- SITUAÇÃO -->
+          <label>Situação Atual</label><br>
+          <p id="coop_sit"><?php echo $fet['COOP_SITUACAO']?></p>
+          <button href="" onclick="funcloseopen(1);">Alterar <i class="fa fa-cog"></i></button>
+        </div>  
+
+        <div class="pnav-item"> <!-- ADMISSÃO -->
+          <label>Data de Admissão</label><br>
+            
+          <!-- PHP ADMISSÃO -->
+          <p>
           <?php if (is_null($fet['COOP_ADMISSAO'])): ?>  
           
-          <span class="da2">
+          <span class="warn">
             <i class="fa fa-warning"></i> Admissão pendente.
           </span>
-          <br>
-          <span class="da1">
-            Definir data de adimissão:<br>
-            <input type="date" id="dainp" name="dainp" placeholder="Alterar...">
+
+          <?php else: ?>
+
+          <span style="color: #ffaa00; font-weight: bold;">
+            <?php   echo $fet['COOP_ADMISSAO']; ?>  
           </span>
 
-          <?php else: 
-
-            echo $fet['COOP_ADMISSAO'];  
+          <?php endif ?>
             
+          </p>
+
+          <!-- PHP ADMISSÃO -->
+
+          <button href="#" onclick="showAltData(1);">Alterar <i class="fa fa-cog"></i></button>
+
+          <div id="altdata">
+            <form method="post" action="#">  
+              <input type="date" name="datadm">
+              <button href="#" onclick="showAltData(0);"><i class="fa fa-close"></i></button><br>
+              <input class="sub" type="submit" onclick="vData();" value="Alterar">
+            </form>
+          </div>
+
+          <?php   
+
+            if (count($_POST) > 0 && $_POST['datadm'] != '') {
+                
+                $id = $fet['COOP_ID'];
+                $datadm = $_POST['datadm'];
+
+
+                funcoes::alterarDataAdmissao($id, $datadm);
+                header('Refresh: 0');
+            }
+
           ?>
 
-          <?php endif ?>
 
+        </div>
+
+        <div class="pnav-item"> <!-- FICHA -->
+          <label>Ficha .pdf</label><br>
+          <p>Baixar/Imprimir</p>
+          
+          <?php   $id = $fet['COOP_ID']; ?>
+          
+          <form method="POST" action="pdf/pdficha.php" target="_blank">
+
+            <button type="submit" name="id" value="<?php echo $id; ?>" >
+              <i class="fa fa-download"> Gerar</i>
+            </button>
+          
+          </form>
+        </div>
       </div>
       
       <div class="dadosp">
         <div class="cont-ficha">
           
          <div class="sit">
-          
-          <p>
-           Situação: <span class="spnsit"><?php echo $fet['COOP_SITUACAO']?></span>
-           <button href="" onclick="funcloseopen(1);"><i class="fa fa-cog"></i></button>
-          </p>
 
           <div id="altsit" class="altsit text-center">
             
@@ -153,23 +198,7 @@
             ?>
             
           </div>
-        </div>
-        
-          <form method="POST" action="pdf/pdficha.php" target="_blank">
-                
-            <?php   $id = $fet['COOP_ID']; ?>
-            
-        
-              <div class="ficha">
-                  <button type="submit" name="id" value="<?php echo $id; ?>">
-                      
-                    <i class="fa fa-download"></i>
-                          Download Ficha.pdf
-                    <i style="transform: scale(1.5); color: #D50000; background: #EEEEEE;"class="fa fa-file-pdf"></i>                  
-                  </button>
-              </div> 
-              
-            </form>   
+         </div>   
         </div>
       </div>
       
@@ -178,11 +207,11 @@
         
         <p>
           <i class="fa fa-phone-alt"></i>
-          Telefone(Residência): <span style="color: #eee;"><?php echo $fet['COOP_TELE_RESI']?></span>
+          Telefone(Residência): <span><?php echo $fet['COOP_TELE_RESI']?></span>
         </p>
         <p>
           <i class="fa fa-mobile"></i>
-          Telefone(Celular): <span style="color: #eee;"><?php echo $fet['COOP_TEL_CELU']?></span>
+          Telefone(Celular): <span><?php echo $fet['COOP_TEL_CELU']?></span>
         </p>
         <p class="text-center contmail">
           <a href="mailto:nome_exemplo012@email.com">
@@ -582,7 +611,26 @@ function showObs (op) {
   else if (op == 1)
   obs_menu.style.display = "block";
 }
+
+function showAltData (op) {
+  var box = document.getElementById('altdata');
+  if (op == 0)
+  box.style.display = "none";
+  else if (op == 1)
+  box.style.display = "block"; 
+}
+
 </script>
+
+<script type="text/javascript">
+        var coop_sit = document.getElementById('coop_sit');
+        
+        if (coop_sit.innerHTML == 'Ativo')
+          coop_sit.style.color = '#4afd4a'
+        else
+          coop_sit.style.color = '#ffdd22';
+</script>
+
 
 <?php   
 

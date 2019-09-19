@@ -19,9 +19,9 @@
 	<form  class="col-4 mb-3 mt-3 p-4 login" method="post" action="sessao/ope-sessao.php">
 
 	<fieldset>
-		<label>Login </label>
+		<label>Login </label><br>
 		<input type="text" name="login" id="login"  /><br><br>
-		<label>Senha</label>
+		<label>Senha</label><br>
 		<input type="password" name="senha" id="senha" /><br>
 		
 		<div class="control-group">
