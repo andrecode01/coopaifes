@@ -113,6 +113,34 @@
 			}
 		}
 
+		#	====
+
+		#	ALTERAR DATA DE ADMISSÃO
+
+		public static function alterarDataAdmissao ($id, $data) {
+
+			$configs = include('bd/config.php');
+		
+			$con = mysqli_connect(
+				$configs['BD_HOST'], 
+				$configs['BD_USERNAME'],
+				$configs['BD_PASSWORD'],
+				$configs['BD_DATABASE']
+			);
+
+			if ($con) {
+
+				$sql = "UPDATE COOPERADO
+						SET COOP_ADMISSAO = '$data'
+						WHERE COOP_ID = '$id'";
+
+				mysqli_query($con, $sql);
+			
+			}
+
+		}
+
+		#	===
 
 	}
 ?>
