@@ -268,9 +268,9 @@
 }
 
 .perfil .contato {
-  background: linear-gradient(180deg, #22222275 70%, transparent);
-  color: #eee;
-  border: 1px solid #444;
+  /*background: linear-gradient(180deg, #22222275 70%, transparent);*/
+  color: #444;
+  /*border: 1px solid #444;*/
   width: 90%;
   margin: 0 auto;
 }
@@ -292,7 +292,7 @@
 
 .perfil .contato a {
   text-decoration: none;
-  color: #eee;
+  color: #444;
   cursor: pointer;
 }
 .perfil .contato a::after {
@@ -320,39 +320,8 @@
 
 .perfil .contato h5 {
   text-decoration: underline #ddd;
-  color: #eee;
-}
-
-.da {
-  text-align: center;
-  margin: 10px 0;  
-}
-
-.da #dainp {
-  width: auto;
-  background: transparent;
-  color: #eee;
-  border: none;
-}
-
-.da .da1 {  
-  color: #eee;
-  background: #444;
-  padding: 3px;
-  border-radius: 2px; 
-  border: 2px solid;
-}
-
-.da .da2 {
-  color: #eee;
-  background: #444;
-  padding: 3px;
-  border-radius: 2px; 
-  border: 2px solid;
-  /*border-top: none;*/
-  position: relative;
-  top: 3px;
-}
+  color: #444 ;
+} 
 
 .obs-item {
   position: relative;
@@ -469,4 +438,81 @@
 
 .fa-warning {
     color: #ffdddd;
+}
+
+.pnav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  border-top: 2px solid #000;
+}
+
+.pnav-item {
+  width: auto;
+  margin: 0 auto;
+  padding: 10px;
+  background: linear-gradient(180deg, #444, transparent);
+  color: #eee;
+  box-shadow: -2px 2px 5px #444;
+}
+
+.pnav-item button {
+  background: unset;
+  color: #444;
+  border: none;
+  border-bottom: 1px solid #eee;
+  transition-duration: .25s;
+}
+
+.pnav-item:nth-child(1) {
+  border-bottom-left-radius: 25%; 
+}
+.pnav-item:nth-child(3) {
+  border-bottom-right-radius: 25%; 
+  box-shadow: 2px 2px 5px #444;
+}
+
+.pnav-item button:hover{
+  cursor: pointer;
+  font-weight: bold;
+  color: #eee;
+}
+
+.pnav-item .warn {
+  color: #ffdddd;
+}
+
+.altdate {
+  width: 100%;
+  text-align: center;
+}
+
+#altdata {
+  display: none;
+  position: absolute;
+  background: #444;
+  padding: 2px;
+  border-radius: 2.5px;
+  box-shadow: -3px 3px 5px #444;
+}
+
+#altdata input{
+  background: #444;
+  border: none;
+  color: #eee;
+  border-bottom: 2px solid #eee;
+}
+
+#altdata .sub:hover {
+  cursor: pointer;
+}
+
+#altdata i {
+  background: #eee;
+  color: darkred;
+  width: 25px;
+  padding: 3px;
 }
