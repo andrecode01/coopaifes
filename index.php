@@ -9,6 +9,8 @@
         $_SESSION['a'] = 'inicio';
     }    
     
+    date_default_timezone_set('America/Sao_Paulo');
+    
     include_once('_cab.php');
     
     include_once('barra_usuario.php');
