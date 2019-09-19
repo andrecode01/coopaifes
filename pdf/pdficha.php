@@ -15,7 +15,7 @@
 
   if ($con) {
 
-    $sql = "SELECT *, DATE_FORMAT(COOP_DATANASC, '%d/%m/%Y') AS COOP_DATANASC, DATE_FORMAT(COOP_DATAX, '%d/%m/%Y') AS COOP_DATAX FROM COOPERADO WHERE COOP_ID = '$id'";
+    $sql = "SELECT *, DATE_FORMAT(COOP_DATANASC, '%d/%m/%Y') AS COOP_DATANASC, DATE_FORMAT(COOP_DATAX, '%d/%m/%Y') AS COOP_DATAX, DATE_FORMAT(COOP_ADMISSAO, '%d/%m/%Y') AS COOP_ADMISSAO FROM COOPERADO WHERE COOP_ID = '$id'";
         
     $dados = mysqli_query($con, $sql);
     $fet = mysqli_fetch_assoc($dados);
@@ -26,7 +26,7 @@
 ?>
 
 
-<div id="pdf" style="display: none;">
+<div id="pdf" style="opacity: 0;">
   
   <div id="pdfcab">
   
@@ -261,7 +261,7 @@
     </div>
     
     <div>
-      <p>Admissão:</p>
+      <p>Admissão: <?php echo $fet['COOP_ADMISSAO']; ?></p>
       <p>Inativo:</p>
       <p>Exclusão:</p>
     </div>
